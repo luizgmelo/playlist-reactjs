@@ -38,7 +38,10 @@
 
 .card button:hover {
   opacity: 0.8;
+}
+
+.btn-follow {
+  border: solid 1px lightgray;
+  color: gray;
   background-color: transparent;
-  border: 1px solid rgb(27, 27, 242);
-  color: rgb(27, 27, 242);
 }

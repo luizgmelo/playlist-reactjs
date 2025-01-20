@@ -20,7 +20,7 @@ export function Card(props: CardProps) {
   const [follow, setFollow] = useState(false);
 
   function handleFollowAndUnfollow() {
-    setFollow(!follow);
+    setFollow((prevState) => !prevState);
   }
 
   return (
