@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import './styles.css'
 
 // PROPS => propriedades que um component pode receber
@@ -12,6 +13,16 @@ interface CardProps {
 }
 
 export function Card(props: CardProps) {
+  // let follow = false;
+  // useState => parametro é o valor inicial
+  // retorna 0: o valor do estado
+  // 1: uma função para mudar o valor do estado
+  const [follow, setFollow] = useState(false);
+
+  function handleFollowAndUnfollow() {
+    setFollow(!follow);
+  }
+
   return (
     <div className='card'>
       <div>
@@ -19,7 +30,7 @@ export function Card(props: CardProps) {
         <strong>{props.name}</strong>
       </div>
 
-      <button>Follow</button>
+      <button onClick={handleFollowAndUnfollow}>{follow ? 'UnFollow' : 'Follow'}</button>
     </div>
   );
 
