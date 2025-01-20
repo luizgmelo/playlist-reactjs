@@ -17,6 +17,7 @@ export function Card(props: CardProps) {
   // useState => parametro é o valor inicial
   // retorna 0: o valor do estado
   // 1: uma função para mudar o valor do estado
+  // template literals => onde podemos colocar javascript dentro do interpolado
   const [follow, setFollow] = useState(false);
 
   function handleFollowAndUnfollow() {
@@ -30,7 +31,12 @@ export function Card(props: CardProps) {
         <strong>{props.name}</strong>
       </div>
 
-      <button onClick={handleFollowAndUnfollow}>{follow ? 'UnFollow' : 'Follow'}</button>
+      <button
+      onClick={handleFollowAndUnfollow} 
+      className={`${follow ? "btn-follow" : "btn"}`}
+      >
+        {follow ? 'UnFollow' : 'Follow'}
+      </button>
     </div>
   );
 

@@ -28,12 +28,15 @@
 }
 
 .card button {
-  background-color: rgb(27, 27, 242);
-  color: white;
   height: 32px;
   width: 80px;
 
   padding: 0;
+}
+
+.btn {
+  background-color: rgb(27, 27, 242);
+  color: white;
 }
 
 .card button:hover {
