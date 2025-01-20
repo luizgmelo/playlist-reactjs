@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import './styles.css'
 
 // PROPS => propriedades que um component pode receber
@@ -23,6 +23,36 @@ export function Card(props: CardProps) {
   function handleFollowAndUnfollow() {
     setFollow((prevState) => !prevState);
   }
+
+  // CHAMADO QUANDO COMPONENT É MONTADO
+  // QUANDO UM ESTADO QUALAUQER SOFRE UMA ATUALIZAÇÃO
+  // observa todas as mudanças de estados
+  // useEffect(() => {
+  //   console.log("Chamou o useEffect 1");
+  // });
+
+  // CHAMADO APENAS NA PRIMEIRA RENDERIZAÇÃO QUANDO O COMPONENT É MONTADO
+  // Geralmente utilizado na chamada de API's
+  // useEffect(() => {
+  //   console.log("Chamou useEffect 2");
+  // }, []);
+
+  // CHAMADO QUANDO O COMPONENT É MONTADO
+  // ELE ESTÁ OBSERVANDO A MUDANÇA DO ESTADO follow
+  useEffect(() => {
+    console.log("Montou o component");
+    localStorage.setItem("card", "o card está aberto");
+    if (follow) {
+      alert("Você passou a seguir mais uma pessoa...");
+    }
+
+    // chamado quando o component deixa de existir
+    return () => {
+      console.log("Desmontou o component...");
+      localStorage.removeItem("card");
+    }
+
+  }, [follow])
 
   return (
     <div className='card'>
