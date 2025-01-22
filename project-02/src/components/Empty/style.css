@@ -1,0 +1,12 @@
+.container-empty {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  align-items: center;
+  justify-content: center;
+}
+
+.container-empty img{
+  width: 100px;
+  height: auto;
+}
