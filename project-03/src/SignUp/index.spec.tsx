@@ -8,7 +8,8 @@ describe("Testa o componente Sign Up", () => {
   vi.mock("react-router-dom", () => ({
     useNavigate() {
       return navigateMock;
-    }
+    },
+    Link: vi.fn().mockImplementation((props) => props.children)
   }));
 
   test("Devem haver 3 inputs na minha tela", async () => {
@@ -53,6 +54,16 @@ describe("Testa o componente Sign Up", () => {
     render(<SignUp />)
 
     const button = await screen.findByRole("button");
+    fireEvent.click(button);
+
+    expect(navigateMock).toHaveBeenCalledTimes(1);
+  });
+
+
+  test("Deve haver um link para a página de login", () => {
+    render(<SignUp />)
+
+    const button = screen.getByText("Já tem cadastro? Clique aqui!");
     fireEvent.click(button);
 
     expect(navigateMock).toHaveBeenCalledTimes(1);
