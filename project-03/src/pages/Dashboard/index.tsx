@@ -1,21 +1,25 @@
 import { useEffect, useState } from "react";
 import styles from './styles.module.scss';
-import { PokemonType } from "../types/PokemonType";
+import { PokemonType } from "../../types/PokemonType";
+import { useNavigate } from "react-router-dom";
 
-export default function Dashboard() {
+interface IProps {
+  fetchPokemonList: () => Promise<PokemonType[]>;
+}
 
+export default function Dashboard({ fetchPokemonList }: IProps) {
+  const navigate = useNavigate();
   const [pokemons, setPokemons] = useState<PokemonType[]>([]);
 
+  function handleNavigate(id: number) {
+    navigate(`/pokemon-detail/${id}`);
+  }
+
   useEffect(() => {
-    async function loadData() {
-      const response = await fetch("http://localhost:3000/pokemon");
-
-      const data = await response.json();
-
+    (async () => {
+      const data = await fetchPokemonList();
       setPokemons(data);
-    }
-
-    loadData()
+    })();
   }, []);
 
   return (
@@ -24,7 +28,7 @@ export default function Dashboard() {
 
       <ul className={styles["container-pokemons"]}>
         {pokemons.map((pokemon) => (
-          <li key={pokemon.id}>
+          <li key={pokemon.id} onClick={() => handleNavigate(pokemon.id)}>
             <h1>{pokemon.name}</h1>
             <img src={pokemon.image} alt={pokemon.name} />
             <strong>{pokemon.type}</strong>
