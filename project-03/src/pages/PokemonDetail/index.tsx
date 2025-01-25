@@ -33,7 +33,7 @@ export default function PokemonDetail({ fetchPokemonDetail }: IProps) {
 
       setPokemon(data);
     })();
-  })
+  }, [])
 
   return (
     <div className={styles.container}>
